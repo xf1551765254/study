@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>class</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	1
+	<script type="text/javascript">
+	// 	1.一个全新的空的对象被创建；
+	// 2.这个空的对象被传递到构造器函数并且作为它的this参数，因此成为了这个构造器函数的上下文对象；
+	// 3.在这个新的空的对象上添加属性，shulk
+	// 4.这个被构造出来的对象被作为函数的返回值返回。
+
+
+		// es6 将构造函数和类分开
+		// preson 是类
+		class Preson{
+			constructor(name,age){ //构造函数 
+				// 申明属性在构造函数内
+				// this  返回空对象
+				// 可以设置默认值
+				this.name=name
+				this.age=age
+			}
+			// 没有标点符号
+			say(){
+				return '我的名字'+this.name+";"+'我的年龄'+this.age
+			}
+		}
+		var obj = new Preson('name',30)
+		//1. 队形调用父级的方法
+		console.log(obj.toString())
+		//2. 对象和类的关系 person.__proto__===person.prototype
+		Preson.prototype.getPerson=()=>{
+			console.log('person')
+		}
+		console.log(obj)
+	</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>?=  ?!</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+     <!-- https://www.cnblogs.com/dong-xu/p/6926064.html -->
+	<div>
+	   <h2>
+	   	1.(?=exp):正向前瞻  匹配后面满足表达式exp的位置
+	   </h2>
+	   <div>
+	   	
+	   </div>
+
+		在这个DEMO中我们可以看出正向前瞻的作用，同样是字符"H"，但是只匹配"H"后面紧跟"i"的"H"。就相当于有一家公司reg，这时候有多名"H"人员前来应聘，但是reg公司提出了一个硬条件是必须掌握"i"这项技能，所以"Hello"就自然的被淘汰掉了。
+	</div>
+
+
+	<div>
+		<h2>
+	   	2.(?!exp):负向前瞻  匹配后面不满足表达式exp的位置
+	   </h2>
+	   <div>
+	   	注意这个方法中有一个引用符 “$1” ，这个的意思引用正则的表达式的第1个分组，可以用$N来表示在正则表达式中的第N个捕获的引用。就那上面的例子来说，"(\/?)"这个一个表达式的含义是，"\/"这个字符出现0次或者1次，而$1这个引用呢就相当于和“\/”这个字符门当户对的大闺女，她已下定决心此生非"\/"不嫁。所以当匹配到有一个“\/”的时候，$1这个引用就把它捕获下来，从现在起，你的就是我的，我的就是你的啦，因此$1等价于"(\/?)"所匹配到的字符；反之如果没有匹配到"\/"这个字符，那$1这个引用就得空守闺房，独立熬过一个又一个漫长的夜晚，因为它内心极度的空虚，所以$1就等价于""（也就是空串）。
+	   	
+	   </div>
+	</div>
+
+	<div>
+		<h2>
+	   	3.前瞻的非捕获性   () 分组进行捕获
+	   </h2>
+		　这里就得聊一聊前瞻的一个特性，前瞻是非捕获性分组，什么玩意是非捕获性分组呢？还记得前面那位非"\/"不嫁的大闺女$1吗，人家为什么那么一往情深，是因为她早已将"\/"的心捕获了起来，而前瞻却是非捕获性分组，也就是你捕获不到人家。也就是说无法通过引用符"\n"或者"$n"来对其引用：
+	</div>
+
+	<div>
+		<h1>4.不吃字符</h1>
+		<div>
+			非捕获性是前瞻的一个基本特征，前瞻的另外一个特性是不吃字符，意思就是前瞻的作用只是为了匹配满足前瞻表达式的字符，而不匹配前瞻本身。也就是说前瞻不会修改匹配位置，这么说我自己都觉得晦涩，我们还是来看看代码吧︽⊙_⊙︽：
+		</div>
+
+		<div>
+			注意观察输出的字符串，前瞻的作用仅仅是匹配出满足前瞻条件的字符"H"，匹配出了"Hello"和"Handsome"当中的H，但同时前瞻不会吃字符，也就是不会改变位置，接下来还是会紧接着"H"开始继续往下匹配，这时候匹配条件是"e"，于是"Hello"中的"He"就匹配成功了，而"Handsome"中的"Ha"则匹配失败
+			
+		</div>
+	</div>
+	<script >
+//1
+		var str = 'Hello, Hi, I am Hilary.';
+	    var reg = /H(?=i)/g;
+	    var newStr = str.replace(reg, "T");
+	    console.log(newStr);//Hello, Ti, I am Tilary.
+
+
+
+ //2
+	    var str2 = 'Hello, Hi, I am Hlary.';
+	    var reg2 = /H(?!i)/g;
+	    var newStr2 = str2.replace(reg2, "T");
+	    console.log(newStr2);//Tello, Hi, I am Hilary.
+
+//3   //.*? 表示任意字符
+	    var str3 = '<div>,<p>,<h1>,<span>,</span>,</h1>,</p>,</div>';
+	  //  <p>div>,<p>,<p>h1>,<p>span>,</p>span>,</p>h1>,<p>/p>,</p>div>
+	    var reg3 = /<(\/?)(?!p).*?/g;
+	    var newStr3 = str3.replace(reg3, "<$1p>");
+	    console.log(newStr3);
+
+     // 捕获 (\/?)=>$1
+	    var str4 = '<div>,<p>,<h1>,<span>,</span>,</h1>,</p>,</div>';
+		     //          <p>div>,<p>p>,<p>h1>,<p>span>,</p>span>,</p>h1>,</p>p>,</p>div>
+	    var reg4 = /<(\/?).*?>/g;
+	    var newStr4 = str4.replace(reg4, "<$1p>");
+	    console.log(newStr4);//<p>,<p>,<p>,<p>,</p>,</p>,</p>,</p>
+
+     // (?!p)不会捕获
+	    var str5 = '<div>,<p>,<h1>,<span>,</span>,</h1>,</p>,</div>';
+	    var reg5 = /<(\/?)(?!p)>/g;
+	    var newStr5 = str5.replace(reg, "<$1p>");
+	    console.log(newStr5);//<div>,<p>,<h1>,<span>,</span>,</h1>,</p>,</div>
+    
+//4
+	var str = 'Hello, Hi, I am Handsome Hilary.';
+    var reg = /H(?!i)e/g;
+    var newStr = str.replace(reg, "T");     
+    console.log(newStr);//Tllo, Hi, I am Handsome Hilary.
+
+// 1. /H(?!i)/g --> Hello, Hi, I am Handsome Hilary.
+// 2. /H(?!i)e/g --> Hello, Hi, I am Handsome Hilary.
+	</script>
+</body>
+</html>

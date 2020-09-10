@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        margin-top: 100px;
+    }
+
+    .box {}
+
+    #div {
+        border: 10px solid #ccc;
+        padding: 10px;
+        overflow: auto;
+    }
+</style>
+<body>
+    <div class="box" style="width: 200px;height:600px;margin-top:100px;background:red;">
+        offset 和scoll 可以用来设置图片的懒加载
+        <div> // div在科室区域内 </div>
+
+    </div>
+
+
+    <div id="div" style="width: 200px;height:100px;background:yellow;margin-top:10px;">
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+        我我我我我我我我我我我我哦哦我我我我我我我我我我我我哦哦我我我我我我我我我
+    </div>
+
+    <div style="width: 200px;height:300px;margin-top:100px;background:red;">
+        123
+    </div>
+    <div style="width: 200px;height:300px;margin-top:100px;background:red;">
+        123
+    </div>
+    <script>
+        // body 
+        // let offsetWidth = document.body.offsetWidth
+        // let offsetHeight = document.body.offsetHeight
+        // let offsetTop = document.body.offsetTop
+        // let offsetLeft = document.body.offsetLeft
+
+        // console.log('offsetWidth,', offsetWidth)
+        // console.log('offsetHeight,', offsetHeight)
+        // console.log('offsetTop,', offsetTop)
+        // console.log('offsetLeft,', offsetLeft)
+
+        // div
+        let div = document.getElementById('div')
+        let offsetWidthdiv = div.offsetWidth //boder +content +padding 网页可见区域宽
+        let offsetHeightdiv = div.offsetHeight //网页可见区域高
+        let offsetTopdiv = div.offsetTop // 距离ducoment 上边的距离 (没有top属性时)
+        let offsetLeftdiv = div.offsetLeft // 距离ducoment 左边的距离
+
+        let styletopdiv = div.style.top // 距离ducoment 上边的距离
+        console.log('offsetWidthdiv,', offsetWidthdiv)
+        console.log('offsetHeightdiv,', offsetHeightdiv)
+        console.log('offsetTopdiv,', offsetTopdiv)
+        console.log('offsetLeftdiv,', offsetLeftdiv)
+        console.log('styletopdiv,', div.style)
+
+        // body 
+        // let scrollWidth = document.body.scrollWidth // 网页正文全文宽
+        // let scrollHeight = document.body.scrollHeight //网页正文全文高
+        // let scrollTop = document.body.scrollTop
+        // let scrollLeft = document.body.scrollLeft
+
+        // console.log('scrollWidth,', scrollWidth)
+        // console.log('scrollHeight,', scrollHeight)
+        // console.log('scrollTop,', scrollTop)
+        // console.log('scrollLeft,', scrollLeft)
+
+        // div
+        let div1 = document.getElementById('div')
+        let scrollWidthdiv1 = div.scrollWidth //网页正文全文宽   没有滚动条：content +padding  若有滚动条：content+滚动条的width
+        let scrollHeightdiv1 = div.scrollHeight //网页正文全文高   没有滚动条：content +padding  若有滚动条：content+滚动条的height
+        let scrollTopdiv1 = div1.scrollTop // 距离ducoment 上边的距离
+        let scrollLeftdiv1 = div1.scrollLeft // 距离ducoment 左边的距离
+
+
+        console.log('scrollWidthdiv1,', scrollWidthdiv1)
+        console.log('scrollHeightdiv1,', scrollHeightdiv1)
+        console.log('scrollTopdiv1,', scrollTopdiv1)
+        console.log('scrollLeftdiv1,', scrollLeftdiv1)
+
+        // document
+        let scrollTopW = document.documentElement.scrollTop; // 页面向上滚动的高度
+        let windowHeight = window.innerHeight; //浏览器自身高度
+        console.log('scrollTopW,', scrollTopW)
+        console.log('windowHeight,', windowHeight)
+        //offsetTopdiv > scrollTopW && offsetTopdiv < (scrollTopW + windowHeight)
+    </script>
+</body>
+</html>

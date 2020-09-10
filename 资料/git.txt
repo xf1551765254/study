@@ -1,0 +1,44 @@
+1.git commit 
+i 输入
+如果是输出状态，首先按Esc键退出输入状态，然后按Shift+“;”，再输入q!或wq!（不保存改动，wq!是保存文件的写入修改）退出。
+补充：
+2.新员工下载公司项目
+   git config --global user.name ""
+   git config --global user.email ""
+   然后是取消安全验证，输入命令 git config --global http.sslVerify false接着是生成密钥对，输入命令 ssh-keygen -t rsa -C "your_email@youremail.com" 不需要密码的情况下，
+   直接三个enter,再然后查看生成的公钥，输入命令 cat ~/.ssh/id_rsa.pub,会得到一连串字符“”
+   下载clone代码。登陆公司的git账户，进入到SSH keys，点击Add key,将上一步最后得到的公钥对输入，点击添加，即可添加成功。在公司的git上进入到某个人的项目中，
+    点击clone,得到一个SSH，命令行机进入到你的项目文件夹下，使用命令git clone SSH即可，然后在你的项目文件夹在就有了项目的代码，直接拖到编辑器。
+3 、git首次提交 
+    echo "# -PC-" >> README.md
+   git init
+   git add README.md
+   git commit -m "first commit"
+   git branch -M master
+   git remote add origin https://github.com/xf1551765254/-PC-.git
+   git push -u origin master
+4、远程地址发生改变
+   （1）直接命令修改
+	git remote set-url origin [url]
+    （2）命令，先删除后设新地址
+	git remote rm origin
+           	git remote add origin [url]
+     （3）直接修改配置文件
+	文件位置：git/config
+	[core]
+    	      repositoryformatversion = 0
+    	      filemode = false
+    	      bare = false
+   	      logallrefupdates = true
+    	     symlinks = false
+    	     ignorecase = true
+	[gui]
+   	      wmstate = normal
+    	     geometry = 841x483+225+101 189 218
+	[remote "origin"]
+    	     url = git@github.com:zengmianhui/android_project.git
+   	    fetch = +refs/heads/*:refs/remotes/origin/*
+	[branch "master"]
+    	     remote = origin
+   	     merge = refs/heads/master
+

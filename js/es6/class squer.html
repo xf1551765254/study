@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>super</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script>
+		// super 父类对象的引用
+		class Preson {
+			constructor(name) {
+				this.name = name
+			}
+			info() {
+				console.log(this.name)
+			}
+
+		}
+
+		class Dog extends Preson {
+			constructor(name, age) {
+				super(name) // 调用父类的构造函数,必须是出现在子类构造函数的第一条语句
+				//  必须是首先完成对父类对象的创建,然后再完成对子类的创建
+				// 没有父类,就没有子类
+				this.age = age
+			}
+			//         info(){
+			//           console.log(this.name,this.age)
+			// }
+
+			info() {
+				super.info() //完成父类方法的调用 没有顺序限制
+				console.log(this.name, this.age)
+			}
+		}
+
+
+		let dog = new Dog('小狗', 12)
+		dog.info()
+	</script>
+</body>
+</html>

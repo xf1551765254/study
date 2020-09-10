@@ -1,0 +1,20 @@
+vscode setting -sync dfba3f81f6cb9a75fbc41f32defa44b6b6d89ed6
+1..激活window 的密码 windows PowerShell  运行 slmgr /skms kms.03k.org 
+slmgr /ato
+2.vue ui(www.xiaomadagege.cn)
+	1.传建
+	2创建新项目
+	3.init peoject
+	4预设 手动
+	5.babel   router  linter 使用配置文件
+3.   （1）手动设置Manually select features
+      （2）选择插件Babel router  linter 
+      （3）路由 模式N  hash
+      （4）Eslint 选择标准类型Eslint standart config
+      （5）Lint on save
+      （6） 可以选择单独的文件配置包设置  in dedicated config files
+      （7）element插件 vue-cli-plugin-element
+4.    日程表 https://fullcalendar.io/#demos    参考https://segmentfault.com/a/1190000019962644
+	vue的日程表插件 https://fullcalendar.io/docs/vue 
+                     日程api    https://blog.csdn.net/qw_xingzhe/article/details/44920943（https://gitee.com/doc_wei01/skyeye）
+	 

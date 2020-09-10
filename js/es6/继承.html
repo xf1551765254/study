@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>继承</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script>
+		// extends 实现继承
+		class Preson{
+			constructor(name){
+               this.name=name
+			}
+			info(){
+             console.log(this.name)
+			}
+
+			eat(){
+				console.log('Preson')
+			}
+
+		}
+
+		class Dog extends Preson{
+           lookDoor(){
+           	console.log('添加')
+           }
+
+           eat(){
+           	console.log('dog')
+           }
+		}
+         
+         // 父类有的,子类也有
+		let dog=new Dog('小狗')
+		dog.info()
+
+		//父类没有的子类可以添加
+		dog.lookDoor()
+
+		// 父类有的,子类可以改写
+		dog.eat()
+
+	</script>
+</body>
+</html>
